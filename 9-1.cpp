@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 
     while(1) {
         memset(buf, '\0', sizeof(buf));
-        //每次调用select钱都要重新设置文件描述符，因为事件发生之后，文件描述符集合会被内核修改
+        //每次调用select都要重新设置文件描述符，因为事件发生之后，文件描述符集合会被内核修改
         FD_SET(connfd,&read_fds);
         FD_SET(connfd,&exception_fds);
         ret = select(connfd+1, &read_fds, NULL, &exception_fds, NULL);
